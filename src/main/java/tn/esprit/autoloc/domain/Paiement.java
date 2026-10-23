@@ -16,6 +16,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Paiement {
+    @ManyToOne
+    @JoinColumn(name = "contrat_id")
+    private Contrat contrat;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

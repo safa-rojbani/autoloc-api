@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.math.BigDecimal;
+
+import java.util.HashSet;
+import java.util.Set;
 @Entity
 @Table(name = "vehicule")
 @Getter
@@ -13,6 +16,24 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Vehicule {
+    @ManyToOne
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Maintenance> maintenances = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "vehicule_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id")
+    )
+    private Set<Equipement> equipements = new HashSet<>();
+
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Reservation> reservations = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVehicule;

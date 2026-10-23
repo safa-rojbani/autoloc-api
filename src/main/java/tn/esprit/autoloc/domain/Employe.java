@@ -6,13 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Table(name = "employe")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Employe {
+    @ManyToOne
+    @JoinColumn(name = "agence_id")
+    private Agence agence;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

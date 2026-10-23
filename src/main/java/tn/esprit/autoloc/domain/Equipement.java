@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "equipement")
@@ -13,6 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Equipement {
+    @ManyToMany(mappedBy = "equipements")
+    private Set<Vehicule> vehicules = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

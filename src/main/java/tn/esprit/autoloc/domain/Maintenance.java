@@ -15,6 +15,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Maintenance {
+    @ManyToOne
+    @JoinColumn(name = "vehicule_id")
+    private Vehicule vehicule;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -9,6 +9,9 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "contrat")
 @Getter
@@ -16,6 +19,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Contrat {
+
+    @OneToOne
+    @JoinColumn(name = "reservation_id")
+    private Reservation reservation;
+
+    @OneToMany(mappedBy = "contrat")
+    private Set<Paiement> paiements = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
