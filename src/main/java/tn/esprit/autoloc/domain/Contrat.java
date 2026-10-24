@@ -11,6 +11,8 @@ import java.time.LocalDate;
 
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
 
 @Entity
 @Table(name = "contrat")
@@ -24,8 +26,13 @@ public class Contrat {
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
-    @OneToMany(mappedBy = "contrat")
-    private Set<Paiement> paiements = new HashSet<>();
+    @OneToMany(
+            mappedBy = "contrat",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference("contrat-paiements")
+    private Set<Paiement> paiements;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

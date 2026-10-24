@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "paiement")
 @Getter
@@ -18,6 +18,7 @@ import java.time.LocalDate;
 public class Paiement {
     @ManyToOne
     @JoinColumn(name = "contrat_id")
+    @JsonBackReference("contrat-paiements")
     private Contrat contrat;
 
     @Id

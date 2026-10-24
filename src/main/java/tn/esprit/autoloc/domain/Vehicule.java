@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "vehicule")
 @Getter
@@ -20,6 +21,7 @@ public class Vehicule {
     @JoinColumn(name = "agence_id")
     private Agence agence;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicule")
     private Set<Maintenance> maintenances = new HashSet<>();
 
@@ -31,6 +33,7 @@ public class Vehicule {
     )
     private Set<Equipement> equipements = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicule")
     private Set<Reservation> reservations = new HashSet<>();
 

@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reservation {
+
     @ManyToOne
     @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
@@ -23,6 +25,7 @@ public class Reservation {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "reservation")
     private Contrat contrat;
 
